@@ -41,14 +41,14 @@ function set_user_color() {
 }
 
 function set_custom_colors() {
-dark_grey="\[$(tput setaf 8)\]"
-dark_purple="\[$(tput setaf 104)\]"
+   dark_grey="\[$(tput setaf 8)\]"
+   dark_purple="\[$(tput setaf 104)\]"
 }
-# Initize custom colors
 
 function __ps_time {
-	echo "$(clock_prompt)${_omb_prompt_normal}"
+   echo "$(clock_prompt)${_omb_prompt_normal}"
 }
+
 function _omb_theme_PROMPT_COMMAND {
   if (($? == 0)); then
     local ret_status=${STATUS_THEME_PROMPT_OK:-${OMB_THEME_PURITY_STATUS_OK-}}
@@ -67,14 +67,12 @@ function _omb_theme_PROMPT_COMMAND {
      printf "\n%*s"  $COLUMNS "${status_code}"
   }
 
-  
-  ps_hostname="$(set_host_color)${hostn}${_omb_prompt_normal}"
- 
-
+ ps_hostname="$(set_host_color)${hostn}${_omb_prompt_normal}"
  PS1="\[$(tput sc; rightprompt; tput rc)\]\n$(__ps_time) ${_omb_prompt_navy}\w $(scm_prompt_info)\n${ps_username}${ps_uh_separator}${ps_hostname} ${ret_status}"
 }
 
-
+# initialize custom colors
 set_custom_colors
 THEME_CLOCK_COLOR=${THEME_CLOCK_COLOR:-"$dark_grey"}
+
 _omb_util_add_prompt_command _omb_theme_PROMPT_COMMAND
